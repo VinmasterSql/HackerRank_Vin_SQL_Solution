@@ -1,0 +1,31 @@
+Pivot the Occupation column in OCCUPATIONS so that each Name is sorted alphabetically and displayed underneath its corresponding Occupation. The output column headers should be Doctor, Professor, Singer, and Actor, respectively.
+Note: Print NULL when there are no more names corresponding to an occupation.
+Input Format
+The OCCUPATIONS table is described as follows:
+
+
+Occupation will only contain one of the following values: Doctor, Professor, Singer or Actor.
+
+Sample Input
+
+
+
+Sample Output
+
+Jenny    Ashley     Meera  Jane
+Samantha Christeen  Priya  Julia
+NULL     Ketty      NULL   Maria
+
+
+######### SOLUTION #########
+
+ select 
+    max(case when occupation='Doctor' then name else null end) as Doctor,
+    max(case when occupation='Professor' then name else null end) as Professor,
+    max(case when occupation='Singer' then name else null end) as Singer,
+    max(case when occupation='Actor' then name else null end) as Actor
+   from (
+      select name,occupation, row_number() over(partition by occupation order by  name asc) as rownumber  from OCCUPATIONS 
+        ) vin
+group by vin.rownumber;
+
