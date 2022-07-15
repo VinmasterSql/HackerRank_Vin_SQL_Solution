@@ -1,0 +1,29 @@
+##### Euclidean Distance #####
+This is Very Interesting Question
+
+Consider p1(a,c) and p2(b,d) to be two points on a 2D plane where (a,b) are the respective minimum and maximum values of Northern Latitude (LAT_N) and (c,d)
+are the respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+Query the Euclidean Distance between points  p1 and p2  and format your answer to display  decimal digits.
+
+
+####### SOLUTION #########
+/*  ## I think this way for solving this problem ##
+
+p=(q1-p1)pow+(q2-p1)pow
+P=(b-a)2+(d-c)2
+ 
+ab=min max LAT_N
+cd=min max LONG_W
+
+Euclidean Distance Formula
+The Euclidean distance formula says:
+d = √[ (x2 – x1)2 + (y2 – y1)2]
+
+*/
+
+
+
+SELECT round(sqrt(pow(max(LAT_N)-min(LAT_N),2)+pow(max(LONG_W)-min(LONG_W),2)),4)
+FROM station;
+
+
